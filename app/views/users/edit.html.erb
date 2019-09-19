@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="row">
+        <div class="edit-message col-md-offset-3 col-md-6">
+
+				<h1>User info</h1>
+                      <% if @user.errors.any? %>
+                            <%= @user.errors.count %>件のerrorが発生しました
+                            <% @user.errors.full_messages.each do |message| %>
+                               <%= message %>
+                            <% end %>
+                        <% end %>
+
+				<%= form_for(@user) do |f| %>
+				      <h4>name</h4>
+				      <%= f.text_field :name %>
+				      <h4>image</h4>
+				     <%= f.attachment_field :profile_image %>
+				      <h4>introduction</h4>
+				      <%= f.text_area :introduction  %>
+				     <%= f.submit "updateUser" ,class: "col-xs-12 btn btn-primary"%>
+				<% end %>
+
+</div>
+   </div>
+      </div>
