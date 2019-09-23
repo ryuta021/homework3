@@ -41,6 +41,8 @@ end
 		@book = Book.new
 		@books = Book.find(params[:id])
 		@user = @books.user
+		@users = current_user
+
 
 	end
 
@@ -48,6 +50,7 @@ end
 
     def edit
      	@book = Book.find(params[:id])
+     	screen_user(@book)
     end
 
 
@@ -61,8 +64,16 @@ end
 	end
 
     private
+
     def book_params
 		params.require(:book).permit(:title,:body)
+    end
+
+    def screen_user(book)
+     	unless
+     	 book.user_id == current_user.id
+         redirect_to books_path
+     	end
     end
 
 end
